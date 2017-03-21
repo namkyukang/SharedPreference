@@ -72,13 +72,22 @@
             android:layout_marginTop="94dp"
             android:text="Help"
             android:textAppearance="@style/TextAppearance.AppCompat.Large" />
-
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/btnClose"
+            android:layout_below="@+id/textView3"
+            android:text="Help~~Help~~Help~~Help~~Help~~Help~~
+            \n blablablabla"
+            android:maxLines="30"
+            />
         <Button
             android:id="@+id/btnClose"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
+            android:layout_alignParentBottom="true"
             android:onClick="closeHelp"
             android:text="Close" />
     </RelativeLayout>
