@@ -1,5 +1,7 @@
 package com.customview.kang.sharedpreference;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -43,6 +45,8 @@ public class MainActivity extends AppCompatActivity {
             layout.setVisibility(View.GONE);
             Log.d("MainActivity","onCreate=============");
         }
+        //세팅된 값을 가져와서 화면에 뿌린다.
+        loadSetting();
     }
     public void closeHelp(View view){
         layout.setVisibility(View.GONE);
@@ -50,8 +54,30 @@ public class MainActivity extends AppCompatActivity {
 
     }
     public void saveSetting(View view){
+        //1.preference 생성하기
+        SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
+        //2. editor를 가져와야한다. shared preference에 값을 입력하기 위해서는 에디터를 통해서만 가능하다.
+        SharedPreferences.Editor editor = sharedPref.edit();
 
+        //editor.putInt("키", "값");
+        editor.putString("email",editName.getText().toString());
+        editor.putBoolean("shuffle", switchShuffle.isChecked());
+
+        //3. 입력된 값을 반영한다.
+        editor.commit();
     }
 
+    public void loadSetting(){
+        SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
+
+        //int defaultValue = getResources().getInteger(R.string.saved_high_score_default); 키값을 정의해놓고 사용하는 부분
+        //프로퍼티 가져오기.
+        String email = sharedPref.getString("email","");
+        boolean shuffle = sharedPref.getBoolean("shuffle",false);
+
+        //화면에 세팅
+        editName.setText(email);
+        switchShuffle.setChecked(shuffle);
+    }
 
 }
