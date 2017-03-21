@@ -20,7 +20,6 @@ public class MainActivity extends AppCompatActivity {
 
     //내부저장소 절대경로 가져오기 /data/data/패키지명/files
     String internalStoragePath;
-    final String propertyFile= "test.properties";
     //context가 없는 상황에서 final을 넣어주면 오류난다. context가 필요한 함수가 실행됐기때문에 에러
     //final String internalStoragePath = getFilesDir().getAbsolutePath();
 
