@@ -15,6 +15,7 @@ import java.io.FileOutputStream;
 import java.util.Properties;
 
 public class MainActivity extends AppCompatActivity {
+    public static final String SHARED_FILE = "test.prop";
     EditText editName;
     Switch switchShuffle;
 
@@ -55,7 +56,8 @@ public class MainActivity extends AppCompatActivity {
     }
     public void saveSetting(View view){
         //1.preference 생성하기
-        SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
+        //SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE); 액티비티 단위로 쓰기 위해서 사용했다. 따로 파일명을 만들지 않아도 됐다.
+        SharedPreferences sharedPref = getSharedPreferences(SHARED_FILE,Context.MODE_PRIVATE);  //서로다른 액티비티에서 공유하기위해 사용.
         //2. editor를 가져와야한다. shared preference에 값을 입력하기 위해서는 에디터를 통해서만 가능하다.
         SharedPreferences.Editor editor = sharedPref.edit();
 
@@ -68,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void loadSetting(){
-        SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
+        SharedPreferences sharedPref = getSharedPreferences(SHARED_FILE,Context.MODE_PRIVATE);
 
         //int defaultValue = getResources().getInteger(R.string.saved_high_score_default); 키값을 정의해놓고 사용하는 부분
         //프로퍼티 가져오기.
